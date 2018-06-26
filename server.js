@@ -1,18 +1,27 @@
 var express = require('express');
-var app = express();
-var port = "3002";
+var server = express();
+var request = require ('request');
+var port = "6002";
 
 server.use(express.static(__dirname));
 
-// set the view engine to ejs
-app.set('view engine', 'ejs');
+server.set('view engine', 'ejs');
 
-// use res.render to load up an ejs view file
+server.get('/', function (req, res) {
+    getnom(res)
 
-// index page 
-app.get('/', function(req, res) {
-    res.render('pages/index');
+    // var test = "Je suis la page d'accueil";
+
 });
+
+
+function getnom(res){
+    var prenom = "Nova";
+    res.render('index', {
+        prenom: prenom
+    });
+}
+
 
 server.listen(port, function(){
     console.log('the port is on')
